@@ -40,7 +40,7 @@ build_image () {
 
     if [[ "${dashboard_branch}" != "master" ]]; then
       rm -rf ${HOME}/dashboard/cypress/jenkins
-      curl https://codeload.github.com/rancher/dashboard/tar.gz/master |  tar -xz --strip=2 dashboard-master/cypress/jenkins
+      curl https://codeload.github.com/isasih/dashboard/tar.gz/eks-jenkins-test |  tar -xz --strip=2 dashboard-eks-jenkins-test/cypress/jenkins
       mv ${HOME}/jenkins ${HOME}/dashboard/cypress/
     fi
 
@@ -185,7 +185,7 @@ if [ ${CORRAL_rancher_type} = "existing" ]; then
 elif  [ ${CORRAL_rancher_type} = "recurring" ]; then
     TEST_USERNAME="admin"
     rancher_init ${CORRAL_rancher_host} ${CORRAL_rancher_host} ${CORRAL_rancher_password}
-    build_image ${branch_from_rancher}
+    build_image "eks-jenkins-test"
     TEST_BASE_URL="https://${CORRAL_rancher_host}/dashboard"
 
     rancher_username="${CORRAL_rancher_username}"
